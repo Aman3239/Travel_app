@@ -72,3 +72,9 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Google map AIzaSyCOuBbjFnjq1tZEWLftoILe6CKLzM_2lLc
+
+#menual chanege
+node_modules
+api/node_modules
