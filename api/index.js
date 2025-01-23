@@ -22,6 +22,11 @@ mongoose.connect("mongodb+srv://amankushwaha0507:aman12345@cluster0.q2dnj.mongod
     console.log("Error connecting to mongodb", err)
 });
 
+app.get("/", (req, res) => {
+    res.send("Hello from Vercel!");
+  });
+  
+
 app.listen(port, () => {
     console.log("Server is runing on port 8000");
 })
