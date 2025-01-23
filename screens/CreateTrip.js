@@ -87,7 +87,7 @@ const CreateTrip = () => {
     };
   
     try {
-      const response = await axios.post("http://10.0.2.2:8000/trip", tripData, {
+      const response = await axios.post("https://travel-app-tan-phi.vercel.app/trip", tripData, {
         timeout: 5000, // 5 seconds timeout
       });
       console.log("Trip created successfully", response.data);

@@ -19,7 +19,7 @@ const RegisterScreen = () => {
             image:image
         };
 
-        axios.post('http://10.0.2.2:8000/register',user).then(response=>{
+        axios.post('https://travel-app-tan-phi.vercel.app/register',user).then(response=>{
             console.log(response);
             Alert.alert("Registration successfull","You have been register successfully")
             setName("");

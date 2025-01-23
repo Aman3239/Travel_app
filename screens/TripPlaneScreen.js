@@ -50,7 +50,7 @@ const TripPlaneScreen = () => {
     const fetchPlaceDetails = async (placeId) => {
         console.log("hay")
         try {
-            const response = await axios.post(`http://10.0.2.2:8000/trip/${tripId}/addPlace`, {
+            const response = await axios.post(`https://travel-app-tan-phi.vercel.app/trip/${tripId}/addPlace`, {
                 placeId: placeId,
             })
 
@@ -67,7 +67,7 @@ const TripPlaneScreen = () => {
 
     const fetchPlacesToVisit = async () => {
         try {
-            const response = await axios.get(`http://10.0.2.2:8000/trip/${tripId}/placesToVisit`)
+            const response = await axios.get(`https://travel-app-tan-phi.vercel.app/trip/${tripId}/placesToVisit`)
             const placesToVisit = response.data
             console.log("Places to visit", placesToVisit)
             setPlaces(placesToVisit)
@@ -151,7 +151,7 @@ const TripPlaneScreen = () => {
 
     const fetchItinerary = async () => {
         try {
-            const response = await axios.get(`http://10.0.2.2:8000/trip/${tripId}/itinerary`)
+            const response = await axios.get(`https://travel-app-tan-phi.vercel.app/trip/${tripId}/itinerary`)
 
             const itinerary = response.data;
 
@@ -163,7 +163,7 @@ const TripPlaneScreen = () => {
 
     const setTripBudget = async (budget) => {
         try {
-            const response = axios.put(`http://10.0.2.2:8000/setBudget/${tripId}`, {
+            const response = axios.put(`https://travel-app-tan-phi.vercel.app/setBudget/${tripId}`, {
                 budget
             });
             setModelOpen(false)
@@ -304,7 +304,7 @@ const TripPlaneScreen = () => {
                 paidBy: paidBy
             }
 
-            const response = await axios.post(`http://10.0.2.2:8000/addExpense/${tripId}`, expenseData);
+            const response = await axios.post(`https://travel-app-tan-phi.vercel.app/addExpense/${tripId}`, expenseData);
 
             if (response.status == 200) {
                 setModal(!modal)
@@ -317,7 +317,7 @@ const TripPlaneScreen = () => {
     const [expenses, setExpenses] = useState([])
     const fetchExpenses = async () => {
         try {
-            const response = await axios.get(`http://10.0.2.2:8000/getExpenses/${tripId}`)
+            const response = await axios.get(`https://travel-app-tan-phi.vercel.app/getExpenses/${tripId}`)
             if (response.status == 200) {
                 setExpenses(response.data.expenses)
             }
@@ -343,7 +343,7 @@ const TripPlaneScreen = () => {
     const handleSendInvite = async()=>{
         try {
             if(isValidEmail){
-                const response = await axios.post('http://10.0.2.2:8000/sendInviteEmail',{
+                const response = await axios.post('https://travel-app-tan-phi.vercel.app/sendInviteEmail',{
                     email,
                     tripId,
                     tripName,

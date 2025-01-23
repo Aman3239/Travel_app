@@ -37,7 +37,7 @@ const HomeScreen = () => {
   const fetchTrips = async () => {
     try {
       console.log('userdata', userId)
-      const response = await axios.get(`http://10.0.2.2:8000/trips/${userId}`);
+      const response = await axios.get(`https://travel-app-tan-phi.vercel.app/trips/${userId}`);
       setTrips(response.data)
     } catch (error) {
       console.log("Error fetching trips:", error)

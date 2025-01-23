@@ -23,7 +23,7 @@ const handleLogin = () => {
         password: password,
     }
 
-    axios.post("http://10.0.2.2:8000/login", user).then(response => {
+    axios.post("https://travel-app-tan-phi.vercel.app/login", user).then(response => {
         const token = response.data.token
         AsyncStorage.setItem("authToken", token);
         setToken(token)
