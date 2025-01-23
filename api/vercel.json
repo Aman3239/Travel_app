@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "name": "api-project",
+  "name": "Travel_app",
   "builds": [
     {
-      "src": "api/*.js",
+      "src": "index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "api/index.js"
+      "dest": "/index.js"
     }
   ]
 }
