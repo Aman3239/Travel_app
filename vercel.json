@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "name": "Travel_app",
+    "builds": [
+      {
+        "src": "api/index.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/api/index.js"
+      }
+    ]
+  }
+  
