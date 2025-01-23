@@ -25,7 +25,7 @@ const TripPlaneScreen = () => {
 
     const tripId = route.params?.item?._id;
 
-    const tripName =  route?.params?.item?.tripName;
+    const tripName = route?.params?.item?.tripName;
     const senderName = route?.params?.item?.name;
 
     const [recommendedPlaces, setRecommendedPlaces] = useState([])
@@ -56,7 +56,7 @@ const TripPlaneScreen = () => {
 
             console.log("updated trip", response.data)
 
-            if (response.status == 200) {
+            if (response.status === 200) {
                 setModalVisible(false);
             }
         } catch (error) {
@@ -161,11 +161,12 @@ const TripPlaneScreen = () => {
         }
     }
 
-    const setTripBudget = async (budget) => {
+    const setTripBudget = async budget => {
+        console.log('budget', budget)
         try {
             const response = axios.put(`https://travel-app-tan-phi.vercel.app/setBudget/${tripId}`, {
                 budget
-            });
+            },);
             setModelOpen(false)
             console.log("Budget", response.data)
         } catch (error) {
@@ -208,7 +209,7 @@ const TripPlaneScreen = () => {
 
         try {
             const response = await axios.post(
-                `http://10.0.2.2:8000/trips/${tripId}/itinerary/${selectedDate}`,
+                `https://travel-app-tan-phi.vercel.app/trips/${tripId}/itinerary/${selectedDate}`,
                 newActivity
             );
 
@@ -302,32 +303,40 @@ const TripPlaneScreen = () => {
                 price: price,
                 splitBy: value,
                 paidBy: paidBy
-            }
+            };
 
             const response = await axios.post(`https://travel-app-tan-phi.vercel.app/addExpense/${tripId}`, expenseData);
 
-            if (response.status == 200) {
-                setModal(!modal)
+            if (response.status === 200) {
+                console.log("expense Added successfully:", response.data)
+                Alert.alert("Success", "Expenses added successfully");
+                setModal(!modal);
             }
+            else {
+                console.error('Failed to add expense:', response.data.message);
+            }
+
         } catch (error) {
-            console.log("Error", error)
+            console.log("Error adding expense", error)
         }
     }
+
+    useEffect(() => {
+        fetchExpenses();
+    }, [modal])
 
     const [expenses, setExpenses] = useState([])
     const fetchExpenses = async () => {
         try {
             const response = await axios.get(`https://travel-app-tan-phi.vercel.app/getExpenses/${tripId}`)
-            if (response.status == 200) {
+            if (response.status === 200) {
                 setExpenses(response.data.expenses)
             }
         } catch (error) {
             console.log("Error", error)
         }
     }
-    useEffect(() => {
-        fetchExpenses();
-    }, [modal])
+
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -340,23 +349,23 @@ const TripPlaneScreen = () => {
 
     console.log("Expenses", expenses)
 
-    const handleSendInvite = async()=>{
+    const handleSendInvite = async () => {
         try {
-            if(isValidEmail){
-                const response = await axios.post('https://travel-app-tan-phi.vercel.app/sendInviteEmail',{
+            if (isValidEmail) {
+                const response = await axios.post('https://travel-app-tan-phi.vercel.app/sendInviteEmail', {
                     email,
                     tripId,
                     tripName,
                     senderName,
                 })
-                if(response.status == 200){
+                if (response.status === 200) {
                     console.log("Invite send successfully");
                     Alert.alert("Success", "Invite send successfully");
                     setOpneShareModal(false);
                 }
             }
         } catch (error) {
-            console.log("Error",error)
+            console.log("Error", error)
         }
     }
     return (
@@ -839,7 +848,7 @@ const TripPlaneScreen = () => {
                                                 </Pressable>
                                             ))}</View>
                                         ) : (
-                                            <Text>You havn't added any expenses yet</Text>
+                                            <Text style={{ padding: 10 }}>You havn't added any expenses yet</Text>
                                         )
                                         }
 
@@ -1146,13 +1155,13 @@ const TripPlaneScreen = () => {
                         </View>
                         {isValidEmail && (
                             <Pressable onPress={handleSendInvite} style={{ backgroundColor: "#E97451", marginTop: 16, padding: 10, borderRadius: 8, justifyContent: "center", alignItems: "center" }}>
-                                <Text style={{color:"white",fontSize:16,fontWeight:'500'}}>Send 1 Invite</Text>
+                                <Text style={{ color: "white", fontSize: 16, fontWeight: '500' }}>Send 1 Invite</Text>
                             </Pressable>
                         )}
                     </View>
                 </ModalContent>
             </BottomModals>
-            <Pressable onPress={()=>navigation.navigate("Home")} style={{
+            <Pressable onPress={() => navigation.navigate("Home")} style={{
                 width: 60,
                 height: 60,
                 borderRadius: 40,

@@ -98,16 +98,17 @@ const HomeScreen = () => {
           }
         </View>
 
-        <View style={{ padding: 10 }}>
+        <View style={{padding: 10}}>
           <Image
             style={{
-              width: '150%', height: 260,
-              resizeMode: "contain",
-              alignSelf: "center",
-              borderRadius:20,
+              width: '96%',
+              height: 220,
+              resizeMode: 'contain',
+              alignSelf: 'center',
+              borderRadius: 20,
             }}
             source={{
-              uri: "https://practicalwanderlust.com/wp-content/uploads/2017/02/How-to-Plan-a-Trip-Travel-Planning-Tips-600x400.jpg"
+              uri: 'https://tripsy.blog/content/images/size/w1000/2023/03/Tripsy-2.15-Cover-2.jpg',
             }}
           />
         </View>

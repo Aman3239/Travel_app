@@ -49,7 +49,7 @@ const Place = ({ item, items, setItems, index }) => {
 
                         <View style={{ marginHorizontal: 8, marginTop: 6, flexDirection: "row", alignItems: "center", padding: 1, gap: 10 }}>
                             <Ionicons name="time-outline" size={25} color="#2a52be" />
-                            <Text style={{ fontSize: 14, fontWeight: "500", color: "#4B61D1" }}>Open {item?.openingHours[0].split(": ")[1]}</Text>
+                            <Text style={{ fontSize: 14, fontWeight: "500", color: "#4B61D1" }}>Open {item?.openingHours[0].split(":")[1]}</Text>
                         </View>
 
                         {item?.website && (

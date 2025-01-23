@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, Image, Pressable, TextInput, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Image, Pressable, TextInput, KeyboardAvoidingView, Alert } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'axios'
@@ -27,6 +27,7 @@ const handleLogin = () => {
         const token = response.data.token
         AsyncStorage.setItem("authToken", token);
         setToken(token)
+        Alert.alert("Success", "You have Login successfully Please wait...");
     })
 }
   return (
