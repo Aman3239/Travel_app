@@ -306,7 +306,7 @@ const TripPlaneScreen = () => {
 
             const response = await axios.post(`https://travel-app-tan-phi.vercel.app/addExpense/${tripId}`, expenseData);
 
-            if (response.status === 200) {
+            if (response.status == 200) {
                 Alert.alert("Success", "expenses added successfully");
                 setModal(!modal)
                 setCategory("")
@@ -445,7 +445,7 @@ const TripPlaneScreen = () => {
                                     </Pressable>
 
                                     <Pressable onPress={() => setOption("$")}>
-                                        <Text style={{ fontSize: 16, fontWeight: "500", color: option == "$" ? "#ed6509" : "gray" }}>$</Text>
+                                        <Text style={{ fontSize: 16, fontWeight: "500", color: option == "$" ? "#ed6509" : "gray" }}>$$$</Text>
                                     </Pressable>
                                 </View>
 

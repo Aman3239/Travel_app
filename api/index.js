@@ -335,7 +335,7 @@ app.post('/sendInviteEmail', async (req, res) => {
       Join Trip
     </a>
     <p>If the button doesn't work, copy and paste this link into your browser:</p>
-    <p>http://10.0.2.2:8000/joinTrip?tripId=${tripId}&email=${email}</p>
+    <p>https://travel-app-tan-phi.vercel.app/joinTrip?tripId=${tripId}&email=${email}</p>
     <p>Best regards,</p>
     <p>Travelers team</p>
         `;
