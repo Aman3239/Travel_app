@@ -208,7 +208,7 @@ const TripPlaneScreen = () => {
 
         try {
             const response = await axios.post(
-                `http://10.0.2.2:8000/trips/${tripId}/itinerary/${selectedDate}`,
+                `https://travel-app-tan-phi.vercel.app/trips/${tripId}/itinerary/${selectedDate}`,
                 newActivity
             );
 
@@ -306,12 +306,17 @@ const TripPlaneScreen = () => {
 
             const response = await axios.post(`https://travel-app-tan-phi.vercel.app/addExpense/${tripId}`, expenseData);
 
-            if (response.status == 200) {
+            if (response.status === 200) {
                 Alert.alert("Success", "expenses added successfully");
                 setModal(!modal)
+                setCategory("")
+                setPaidBy("")
+                setPrice("")
+                setValue("")
             }
         } catch (error) {
             console.log("Error", error)
+            Alert.alert("Error", error.response?.data?.message || "An error occurred. Please try again.");
         }
     }
 
@@ -360,6 +365,8 @@ const TripPlaneScreen = () => {
             console.log("Error",error)
         }
     }
+
+    
     return (
         <>
             <SafeAreaView>

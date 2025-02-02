@@ -271,13 +271,14 @@ app.post('/addExpense/:tripId', async (req, res) => {
     try {
         const { tripId } = req.params;
         const { category, price, paidBy, splitBy } = req.body;
+
+        // Check if trip exists
         const trip = await Trip.findById(tripId);
         if (!trip) {
-            return res.status(404).json({
-                message: "Trip not found"
-            })
+            return res.status(404).json({ message: "Trip not found" });
         }
 
+        // Create new expense
         const newExpense = {
             category,
             price,
@@ -285,15 +286,18 @@ app.post('/addExpense/:tripId', async (req, res) => {
             splitBy
         };
 
-        trip.expenses.push(newExpense)
-
+        // Add expense to the trip
+        trip.expenses.push(newExpense);
         await trip.save();
 
-        res.status(200).json({ message: "Expense added successfully", trip })
+        res.status(200).json({ message: "Expense added successfully", trip });
+
     } catch (error) {
-        console.log("Error".error)
+        console.error("Error:", error);
+        res.status(500).json({ message: "An error occurred", error: error.message });
     }
 });
+
 
 app.get('/getExpenses/:tripId', async (req, res) => {
     try {
@@ -326,7 +330,7 @@ app.post('/sendInviteEmail', async (req, res) => {
         <h3>Hello,</h3>
     <p>${senderName} has invited you to join their trip "<strong>${tripName}</strong>".</p>
     <p>Click the button below to join the trip:</p>
-    <a href="http://10.0.2.2:8000/joinTrip?tripId=${tripId}&email=${email}" 
+    <a href="https://travel-app-tan-phi.vercel.app/joinTrip?tripId=${tripId}&email=${email}" 
       style="background-color: #4B61D1; color: white; padding: 10px 20px; text-decoration: none; font-size: 16px; border-radius: 5px;">
       Join Trip
     </a>
